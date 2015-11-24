@@ -17,7 +17,6 @@ class UserRepositorySpecification extends FlatSpec with Matchers {
   }
 
   def repository = UserRepository(Map(existingUsername -> sampleUser))
-  def sampleUser = User(existingUsername, "123456")
+  def sampleUser = User(existingUsername, "123456", Seq("hi"))
   def existingUsername = "mufasa"
 }
-test/kmruiz/domain/user/UserRepositorySpecification.scala:23
