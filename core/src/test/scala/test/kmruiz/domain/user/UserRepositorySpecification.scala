@@ -1,7 +1,7 @@
 package test.kmruiz.domain.user
 
-import kmruiz.domain.user.{VolatileUserRepository, User, UserRepository}
-import org.scalatest.{Matchers, FlatSpec}
+import kmruiz.domain.user.{User, UserRepository}
+import org.scalatest.{FlatSpec, Matchers}
 
 /**
   * @author kevin 
@@ -20,3 +20,4 @@ class UserRepositorySpecification extends FlatSpec with Matchers {
   def sampleUser = User(existingUsername, "123456")
   def existingUsername = "mufasa"
 }
+test/kmruiz/domain/user/UserRepositorySpecification.scala:23
