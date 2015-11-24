@@ -12,15 +12,21 @@ class UserSpecification extends FlatSpec with Matchers with TryValues {
     validUser // it will fail if it throws an exception
   }
 
+  it must "have roles" in {
+    intercept[IllegalArgumentException] {
+      User("user1", "pwd1", Seq())
+    }
+  }
+
   it must "not accept an empty username" in {
     intercept[IllegalArgumentException] {
-      User("", validPassword)
+      User("", validPassword, validRoles)
     }
   }
 
   it must "not accept an empty password" in {
     intercept[IllegalArgumentException] {
-      User(validUserName, "")
+      User(validUserName, "", validRoles)
     }
   }
 
@@ -46,9 +52,10 @@ class UserSpecification extends FlatSpec with Matchers with TryValues {
     ) yield authUser.createPassport() // should not throw
   }
 
-  def validUser = User(validUserName, validPassword)
+  def validUser = User(validUserName, validPassword, validRoles)
   def invalidPassword = "pwd2"
   def validPassword = "pwd1"
   def validUserName = "user1"
   def validLoggedUser = validUser.login(validPassword)
+  def validRoles = Seq("USER")
 }
