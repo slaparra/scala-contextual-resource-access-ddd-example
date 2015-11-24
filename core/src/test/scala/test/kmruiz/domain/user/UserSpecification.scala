@@ -9,7 +9,7 @@ import org.scalatest.{TryValues, Matchers, FlatSpec}
   */
 class UserSpecification extends FlatSpec with Matchers with TryValues {
   "An User" must "only be buildable with a valid username and a password" in {
-    User("user1", "pwd1") // it will fail if it throws an exception
+    validUser // it will fail if it throws an exception
   }
 
   it must "not accept an empty username" in {
@@ -25,23 +25,26 @@ class UserSpecification extends FlatSpec with Matchers with TryValues {
   }
 
   it must "login only when the password matches" in {
-    User("user1", "pwd1").login("pwd1") should be a 'success
+    validLoggedUser should be a 'success
   }
 
   it should "be able to login again" in {
     for (
-      user <- User("user1", "pwd1").login("pwd1") ;
+      user <- validLoggedUser;
       loggedAgain <- user.login("pwd1")
     ) yield loggedAgain should be a 'success
   }
 
   it must "not be able to login with an invalid password" in {
-    User("user1", "pwd1").login("pwd2") should be a 'failure
+    validUser.login("pwd2") should be a 'failure
   }
 
   "An AuthenticatedUser" must "be able to create a non expired passport" in {
     for (
-      authUser <- User("user1", "pwd1").login("pwd2")
+      authUser <- validLoggedUser
     ) yield authUser.createPassport() // should not throw
   }
+
+  def validUser = User("user1", "pwd1")
+  def validLoggedUser = validUser.login("pwd1")
 }
