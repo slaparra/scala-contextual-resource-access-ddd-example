@@ -16,4 +16,10 @@ class UserSpecification extends FlatSpec with Matchers {
       User("", "pwd1")
     }
   }
+
+  it must "not accept an empty password" in {
+    intercept[IllegalArgumentException] {
+      User("user1", "")
+    }
+  }
 }
