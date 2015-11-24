@@ -1,4 +1,5 @@
-import scala.concurrent.ExecutionContext
+import scala.concurrent.{Await, Future, ExecutionContext}
+import scala.concurrent.duration._
 
 /**
   * @author kevin 
@@ -9,4 +10,6 @@ package object test {
     def execute(runnable: Runnable) = runnable.run()
     def reportFailure(t: Throwable) = throw t
   }
+
+  def wait[T](a: Future[T]): T = Await.result(a, 1 second)
 }
