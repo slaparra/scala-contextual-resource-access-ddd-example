@@ -13,6 +13,7 @@ trait Passport {
 
 case class ExpirablePassport(username: String, expirationDate: Date) extends Passport {
   require(username.trim.length > 0, "username must not be empty")
+  require(expirationDate.after(new Date), "passport has been expired")
 
   def refresh() = copy(expirationDate = DateTime.now + 5.minute toDate)
 }
