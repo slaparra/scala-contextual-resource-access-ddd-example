@@ -1,10 +1,8 @@
 package test.kmruiz.domain.passport
 
-import java.util.Date
-
-import kmruiz.domain.passport.Passport
-import org.scalatest.{Matchers, FlatSpec}
 import com.github.nscala_time.time.Imports._
+import kmruiz.domain.passport.Passport
+import org.scalatest.{FlatSpec, Matchers}
 
 /**
   * @author kevin 
@@ -15,15 +13,20 @@ class PassportSpecification extends FlatSpec with Matchers {
     nonExpiredPassport // fails when throwing an exception
   }
 
+  it must "not accept an empty role list" in {
+    intercept[IllegalArgumentException] {
+      Passport(validUser, nonExpiredDate, Seq())
+    }
+  }
   it must "not accept an empty username" in {
     intercept[IllegalArgumentException] {
-      Passport("", nonExpiredDate)
+      Passport("", nonExpiredDate, validRoles)
     }
   }
 
   it must "not accept an expired date" in {
     intercept[IllegalArgumentException] {
-      Passport(validUser, expiredDate)
+      Passport(validUser, expiredDate, validRoles)
     }
   }
 
@@ -36,5 +39,6 @@ class PassportSpecification extends FlatSpec with Matchers {
   def nonExpiredDate = (DateTime.now + 1.second).toDate
   def expiredDate = DateTime.yesterday.toDate
   def validUser = "mufasa"
-  def nonExpiredPassport = Passport(validUser, nonExpiredDate)
+  def validRoles = Seq("Role")
+  def nonExpiredPassport = Passport(validUser, nonExpiredDate, validRoles)
 }

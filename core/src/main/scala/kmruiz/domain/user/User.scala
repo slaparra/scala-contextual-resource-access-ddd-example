@@ -26,7 +26,7 @@ case class PlainAuthenticatedUser(username: String, password: String, roles: Seq
   require(password == providedPassword, "password do not match")
 
   def login(inputPassword: String) = Try(copy(providedPassword = inputPassword))
-  def createPassport() = Passport(username)
+  def createPassport() = Passport(username, roles)
 }
 
 object User {

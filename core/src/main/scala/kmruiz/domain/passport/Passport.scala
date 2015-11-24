@@ -15,14 +15,15 @@ trait PassportCreator {
   def createPassport(): Passport
 }
 
-case class ExpirablePassport(username: String, expirationDate: Date) extends Passport {
+case class ExpirablePassport(username: String, expirationDate: Date, roles: Seq[String]) extends Passport {
   require(username.trim.length > 0, "username must not be empty")
   require(expirationDate.after(new Date), "passport has been expired")
+  require(roles.nonEmpty, "passport must have roles")
 
   def refresh() = copy(expirationDate = DateTime.now + 5.minute toDate)
 }
 
 object Passport {
-  def apply(username: String, expirationDate: Date): ExpirablePassport = ExpirablePassport(username, expirationDate)
-  def apply(username: String): ExpirablePassport = ExpirablePassport(username, DateTime.now + 5.minute toDate)
+  def apply(username: String, expirationDate: Date, roles: Seq[String]): ExpirablePassport = ExpirablePassport(username, expirationDate, roles)
+  def apply(username: String, roles: Seq[String]): ExpirablePassport = ExpirablePassport(username, DateTime.now + 5.minute toDate, roles)
 }
