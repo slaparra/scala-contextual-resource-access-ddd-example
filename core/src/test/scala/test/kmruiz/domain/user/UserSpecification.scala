@@ -1,13 +1,13 @@
 package test.kmruiz.domain.user
 
 import kmruiz.domain.user.User
-import org.scalatest.{Matchers, FlatSpec}
+import org.scalatest.{TryValues, Matchers, FlatSpec}
 
 /**
   * @author kevin 
   * @since 11/24/15.
   */
-class UserSpecification extends FlatSpec with Matchers {
+class UserSpecification extends FlatSpec with Matchers with TryValues {
   "A User" must "only be buildable with a valid username and a password" in {
     User("user1", "pwd1") // it will fail if it throws an exception
   }
@@ -22,5 +22,9 @@ class UserSpecification extends FlatSpec with Matchers {
     intercept[IllegalArgumentException] {
       User("user1", "")
     }
+  }
+
+  it must "login only when the password matches" in {
+    User("user1", "pwd1").login("pwd1") should be a 'success
   }
 }
