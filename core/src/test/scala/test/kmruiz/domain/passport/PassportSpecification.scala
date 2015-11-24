@@ -21,21 +21,20 @@ class PassportSpecification extends FlatSpec with Matchers {
     }
   }
 
+  it must "not accept an expired date" in {
+    intercept[IllegalArgumentException] {
+      Passport("mufasa", expiredDate)
+    }
+  }
+
   it must "when refreshed, update the expiration date ahead 5 minutes" in {
     // approximate it to 5 min with an error of 2 ms because of runtime
     nonExpiredPassport.refresh().expirationDate.getTime should be (fiveMinutesAhead.getTime +- 2)
   }
 
-  def fiveMinutesAhead: Date = {
-    (DateTime.now + 5.minute).toDate
-  }
+  def fiveMinutesAhead = (DateTime.now + 5.minute).toDate
+  def nonExpiredDate = (DateTime.now + 1.second).toDate
+  def expiredDate = DateTime.yesterday.toDate
 
-  def nonExpiredDate: Date = {
-    (DateTime.now + 1.second).toDate
-  }
-
-  def nonExpiredPassport: Passport = {
-    Passport("mufasa", nonExpiredDate)
-  }
-
+  def nonExpiredPassport = Passport("mufasa", nonExpiredDate)
 }
