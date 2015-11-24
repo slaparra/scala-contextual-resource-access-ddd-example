@@ -1,4 +1,4 @@
-package kmruiz.domain.user
+package test.kmruiz.domain.user
 
 import org.scalatest.{Matchers, FlatSpec}
 
