@@ -1,5 +1,6 @@
 package test.kmruiz.domain.user
 
+import kmruiz.domain.user.User
 import org.scalatest.{Matchers, FlatSpec}
 
 /**
