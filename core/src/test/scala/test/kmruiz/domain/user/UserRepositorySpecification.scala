@@ -1,6 +1,6 @@
 package test.kmruiz.domain.user
 
-import kmruiz.domain.user.{User, UserRepository}
+import kmruiz.domain.user.{VolatileUserRepository, User, UserRepository}
 import org.scalatest.{Matchers, FlatSpec}
 
 /**
@@ -12,7 +12,11 @@ class UserRepositorySpecification extends FlatSpec with Matchers {
 
   "A UserRepository" must "find a user by it's username" in {
     for (
-      user <- UserRepository(Map("mufasa" -> User("mufasa", "123456"))).findUser("mufasa")
+      user <- repository.findUser(existingUsername)
     ) yield user should not be null
   }
+
+  def repository = UserRepository(Map(existingUsername -> sampleUser))
+  def sampleUser = User(existingUsername, "123456")
+  def existingUsername = "mufasa"
 }
