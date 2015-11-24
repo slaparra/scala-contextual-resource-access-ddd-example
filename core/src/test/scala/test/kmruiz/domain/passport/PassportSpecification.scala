@@ -23,7 +23,7 @@ class PassportSpecification extends FlatSpec with Matchers {
 
   it must "not accept an expired date" in {
     intercept[IllegalArgumentException] {
-      Passport("mufasa", expiredDate)
+      Passport(validUser, expiredDate)
     }
   }
 
@@ -35,6 +35,6 @@ class PassportSpecification extends FlatSpec with Matchers {
   def fiveMinutesAhead = (DateTime.now + 5.minute).toDate
   def nonExpiredDate = (DateTime.now + 1.second).toDate
   def expiredDate = DateTime.yesterday.toDate
-
-  def nonExpiredPassport = Passport("mufasa", nonExpiredDate)
+  def validUser = "mufasa"
+  def nonExpiredPassport = Passport(validUser, nonExpiredDate)
 }
