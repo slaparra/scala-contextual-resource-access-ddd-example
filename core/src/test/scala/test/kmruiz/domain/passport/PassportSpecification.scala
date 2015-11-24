@@ -22,7 +22,8 @@ class PassportSpecification extends FlatSpec with Matchers {
   }
 
   it must "when refreshed, update the expiration date ahead 5 minutes" in {
-    nonExpiredPassport.refresh().expirationDate.getTime should be (fiveMinutesAhead.getTime +- 5)
+    // approximate it to 5 min with an error of 2 ms because of runtime
+    nonExpiredPassport.refresh().expirationDate.getTime should be (fiveMinutesAhead.getTime +- 2)
   }
 
   def fiveMinutesAhead: Date = {
