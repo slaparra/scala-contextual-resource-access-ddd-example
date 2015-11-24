@@ -27,4 +27,15 @@ class UserSpecification extends FlatSpec with Matchers with TryValues {
   it must "login only when the password matches" in {
     User("user1", "pwd1").login("pwd1") should be a 'success
   }
+
+  it should "be able to login again" in {
+    for (
+      user <- User("user1", "pwd1").login("pwd1") ;
+      loggedAgain <- user.login("pwd1")
+    ) yield loggedAgain should be a 'success
+  }
+
+  it must "not be able to login with an invalid password" in {
+    User("user1", "pwd1").login("pwd2") should be a 'failure
+  }
 }
