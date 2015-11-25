@@ -11,9 +11,11 @@ class UserRepositorySpecification extends FlatSpec with Matchers {
   import test._
 
   "A UserRepository" must "find a user by it's username" in {
-    for (
-      user <- repository.findUser(existingUsername)
-    ) yield user should not be null
+    monadic {
+      for (
+        user <- repository.findUser(existingUsername)
+      ) yield user should not be null
+    }
   }
 
   def repository = UserRepository(Map(existingUsername -> sampleUser))

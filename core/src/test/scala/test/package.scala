@@ -11,5 +11,5 @@ package object test {
     def reportFailure(t: Throwable) = throw t
   }
 
-  def wait[T](a: Future[T]): T = Await.result(a, 1 second)
+  def monadic(a: => Future[Any]): Unit = Await.result(a, 1 second)
 }

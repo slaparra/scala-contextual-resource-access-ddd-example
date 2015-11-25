@@ -12,11 +12,13 @@ class PassportRepositorySpecification extends FlatSpec with Matchers {
   import test._
 
   "A PassportRepository" must "find a saved passport" in {
-    val repo = repository
-    for (
-      passport <- repo.save(someValidPassport);
-      foundPassport <- repo.findByUser(passportUser)
-    ) yield passport should equal(foundPassport)
+    monadic {
+      val repo = repository
+      for (
+        passport <- repo.save(someValidPassport);
+        foundPassport <- repo.findByUser(passportUser)
+      ) yield passport should equal(foundPassport)
+    }
   }
 
   def passportUser = "somePassport"
