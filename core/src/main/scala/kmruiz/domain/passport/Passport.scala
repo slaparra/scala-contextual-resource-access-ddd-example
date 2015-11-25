@@ -8,7 +8,7 @@ import com.github.nscala_time.time.Imports._
   * @since 11/24/15.
   */
 trait Passport {
-  def refresh(): ExpirablePassport
+  def refresh(): Passport
 }
 
 trait PassportCreator {

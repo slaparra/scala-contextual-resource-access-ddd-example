@@ -18,6 +18,7 @@ class PassportSpecification extends FlatSpec with Matchers {
       Passport(validUser, nonExpiredDate, Seq())
     }
   }
+
   it must "not accept an empty username" in {
     intercept[IllegalArgumentException] {
       Passport("", nonExpiredDate, validRoles)
