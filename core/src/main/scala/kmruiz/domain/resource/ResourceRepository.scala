@@ -22,4 +22,7 @@ case class VolatileResourceRepository(resources: Seq[PrivateResource])(implicit 
 
 object ResourceRepository {
   def apply(resources: Seq[PrivateResource])(implicit ec: ExecutionContext): ResourceRepository = VolatileResourceRepository(resources)
+  def apply()(implicit ec: ExecutionContext): ResourceRepository = VolatileResourceRepository(
+    Seq(PrivateResource("1", Seq("ROLE_1")), PrivateResource("2", Seq("ROLE_2")), PrivateResource("3", Seq("ROLE_3")))
+  )
 }
