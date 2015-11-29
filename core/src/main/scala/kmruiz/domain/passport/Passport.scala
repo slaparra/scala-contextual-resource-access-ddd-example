@@ -8,8 +8,11 @@ import kmruiz.domain.resource.{ResourceId, ResourceAccessor}
   * @author kevin 
   * @since 11/24/15.
   */
+
+case class PassportDTO(id: String)
 trait Passport extends ResourceAccessor {
   def refresh(): Passport
+  def DTO: PassportDTO
 }
 
 trait PassportCreator {
@@ -25,6 +28,7 @@ case class ExpirablePassport(username: String, expirationDate: Date, roles: Seq[
 
   def refresh() = new ExpirablePassport(username, roles)
   def generateResourceId(uuid: String) = ResourceId(uuid, roles)
+  def DTO = PassportDTO(username)
 }
 
 object Passport {
