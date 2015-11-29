@@ -15,5 +15,11 @@ case class VolatileUserRepository(users: Map[String, User])(implicit ec: Executi
 }
 
 object UserRepository {
-  def apply(users: Map[String, User])(implicit ec: ExecutionContext): VolatileUserRepository = VolatileUserRepository(users)
+  def apply(users: Map[String, User])(implicit ec: ExecutionContext): UserRepository = VolatileUserRepository(users)
+  def apply()(implicit ec: ExecutionContext): UserRepository = VolatileUserRepository(Map(
+    "user1" -> User("user1", "user1", Seq("ROLE_1")),
+    "user2" -> User("user2", "user2", Seq("ROLE_2")),
+    "user3" -> User("user3", "user3", Seq("ROLE_3")),
+    "user4" -> User("user4", "user4", Seq("ROLE_1", "ROLE_2", "ROLE_3"))
+  ))
 }
