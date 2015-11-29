@@ -1,0 +1,6 @@
+GET         /registration        kmruiz.api.RegistrationBookController.index()
+POST        /registration        kmruiz.api.RegistrationBookController.createPassport()
+DELETE      /registration        kmruiz.api.RegistrationBookController.forbidPassport()
+
+GET         /resources           kmruiz.api.SecurityServiceController.index()
+GET         /resources/:id       kmruiz.api.SecurityServiceController.resource(id: String)

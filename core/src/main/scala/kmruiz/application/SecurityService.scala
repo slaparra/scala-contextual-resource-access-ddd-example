@@ -20,3 +20,13 @@ case class BasicSecurityService(passportService: PassportService, resourceServic
     resource <- resourceService.access(passport, resource)
   ) yield resource
 }
+
+object SecurityService {
+  def apply(passportService: PassportService, resourceService: ResourceService)(implicit ec: ExecutionContext): SecurityService = {
+    BasicSecurityService(passportService, resourceService)
+  }
+
+  def apply()(implicit ec: ExecutionContext): SecurityService = {
+    BasicSecurityService(PassportService(), ResourceService())
+  }
+}

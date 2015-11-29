@@ -1,0 +1,31 @@
+@(errors: Seq[String] = Seq())
+<html>
+    <head>
+        <script language="javascript">
+            function logout(options) {
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function () {
+                    if (xhttp.readyState == 4 && xhttp.status == 200) {
+                        options.onDone();
+                    }
+                };
+
+                xhttp.open("DELETE", "/registration", true);
+                xhttp.send();
+            }
+
+            function goToLogin() {
+                location.href = "/registration";
+            }
+        </script>
+    </head>
+    <body>
+        <h1>Go to:</h1>
+        <ul>
+            <li><a href="/resources/1">Resource 1</a></li>
+            <li><a href="/resources/2">Resource 2</a></li>
+            <li><a href="/resources/3">Resource 3</a></li>
+        </ul>
+        <a href="#" onclick="logout({ onDone: goToLogin })">Logout</a>
+    </body>
+</html>
