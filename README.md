@@ -16,6 +16,13 @@ Run this command on the root of the project
 $> ./sbt.run-app.sh
 ```
 
+Running the tests
+-----------------
+
+```sh
+$> ./sbt.run-unit-test.sh
+```
+
 Modules
 -------
 
