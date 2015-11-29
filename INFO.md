@@ -23,7 +23,7 @@ the Application Service components.
 api
 ----
 
-API is a play application that publishes the core to the final user. It's a stateful session-based application. However
+API is a _Play!_ application that publishes the core to the final user. It's a stateful session-based application. However
 the architecture is based on a stateless domain layer, being easy to change to a RESTful API based on token authentication.
 
 The controllers are just a facade to the application service layer.
