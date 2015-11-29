@@ -28,7 +28,7 @@ object RegistrationBookController extends Controller {
     (username, password) match {
       case (Some(user), Some(pass)) =>
         registrationBook.sign(user, pass)
-          .map(passport => Redirect("/resources").withSession("passport" -> passport.toString))
+          .map(passport => Redirect("/resources").withSession("passport" -> passport.DTO.id))
       case _ => Future.failed(new NoSuchElementException("Invalid credentials!"))
     }
   }
