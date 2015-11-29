@@ -2,12 +2,13 @@ package kmruiz.domain.passport
 
 import java.util.Date
 import com.github.nscala_time.time.Imports._
+import kmruiz.domain.resource.{ResourceId, ResourceAccessor}
 
 /**
   * @author kevin 
   * @since 11/24/15.
   */
-trait Passport {
+trait Passport extends ResourceAccessor {
   def refresh(): Passport
 }
 
@@ -23,6 +24,7 @@ case class ExpirablePassport(username: String, expirationDate: Date, roles: Seq[
   def this(username: String, roles: Seq[String]) = this(username, DateTime.now + 5.minute toDate, roles)
 
   def refresh() = new ExpirablePassport(username, roles)
+  def generateResourceId(uuid: String) = ResourceId(uuid, roles)
 }
 
 object Passport {

@@ -2,6 +2,7 @@ package test.kmruiz.domain.passport
 
 import com.github.nscala_time.time.Imports._
 import kmruiz.domain.passport.Passport
+import kmruiz.domain.resource.ResourceId
 import org.scalatest.{FlatSpec, Matchers}
 
 /**
@@ -34,6 +35,10 @@ class PassportSpecification extends FlatSpec with Matchers {
   it must "when refreshed, update the expiration date ahead 5 minutes" in {
     // approximate it to 5 min with an error of 2 ms because of runtime
     nonExpiredPassport.refresh().expirationDate.getTime should be (fiveMinutesAhead.getTime +- 2)
+  }
+
+  it must "generate a valid resource id" in {
+    nonExpiredPassport.generateResourceId("uuid") should be(ResourceId("uuid", validRoles))
   }
 
   def fiveMinutesAhead = (DateTime.now + 5.minute).toDate
