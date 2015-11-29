@@ -13,7 +13,7 @@ the Application Service components.
 
 * User -> The logical concept of client of the application. Has a username, a password and a set of roles.
 * Passport -> The "card" of the user, that defines where it can access when authenticated on the application.
-* Resource -> A logical resource that is defines who can access to it.
+* Resource -> A logical resource that defines who can access to it.
 
 ### Application Services
 
