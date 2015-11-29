@@ -1,3 +1,4 @@
+GET         /                    kmruiz.api.RegistrationBookController.index()
 GET         /registration        kmruiz.api.RegistrationBookController.index()
 POST        /registration        kmruiz.api.RegistrationBookController.createPassport()
 DELETE      /registration        kmruiz.api.RegistrationBookController.forbidPassport()

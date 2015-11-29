@@ -1,7 +1,16 @@
 scala-contextual-resource-access-ddd-example
 ============================================
 
-To run the application:
+Requirements
+-------------
+
+* SBT installed
+* Scala
+
+Running the Application
+-----------------------
+
+Run this command on the root of the project
 
 ```sh
 $> ./sbt.run-app.sh

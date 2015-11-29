@@ -11,6 +11,6 @@ import kmruiz.domain.transformers.implicits.MonadTransformers._
 object Global extends GlobalSettings {
   override def onError(request: RequestHeader, ex: Throwable) = ex match {
     case e: NoSuchElementException => NotFound(views.html.RegistrationBookController.index(Seq("Invalid credentials!")))
-    case e: IllegalArgumentException => BadRequest(views.html.RegistrationBookController.index(Seq("BadRequest", e.getMessage)))
+    case e: IllegalArgumentException => BadRequest(views.html.RegistrationBookController.index(Seq(e.getMessage)))
   }
 }
