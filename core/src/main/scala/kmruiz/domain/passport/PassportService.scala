@@ -18,7 +18,11 @@ case class BasicPassportService(passportRepository: PassportRepository)(implicit
     saved <- passportRepository.save(passport)
   ) yield saved
 
-  def findPassport(uuid: String) = passportRepository.findByUser(uuid)
+  def findPassport(uuid: String) = for (
+    passport <- passportRepository.findByUser(uuid) ;
+    refreshed <- passport.refresh() ;
+    saved <- passportRepository.save(refreshed)
+  ) yield saved
 }
 
 object PassportService {

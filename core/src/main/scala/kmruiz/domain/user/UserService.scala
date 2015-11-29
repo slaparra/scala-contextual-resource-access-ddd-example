@@ -8,7 +8,7 @@ import kmruiz.domain.transformers.implicits.MonadTransformers._
   * @since 11/29/15.
   */
 trait UserService {
-  def login(username: String, password: String): Future[User]
+  def login(username: String, password: String): Future[AuthenticatedUser]
 }
 
 case class BasicUserService(userRepository: UserRepository)(implicit ec: ExecutionContext) extends UserService {

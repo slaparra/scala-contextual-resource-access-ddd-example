@@ -1,6 +1,6 @@
 package test.kmruiz.domain.passport
 
-import kmruiz.domain.passport.{Passport, PassportCreator, PassportService}
+import kmruiz.domain.passport.{ExpirablePassport, Passport, PassportCreator, PassportService}
 import org.scalatest.{FlatSpec, Matchers}
 
 /**
@@ -16,9 +16,9 @@ case class PassportServiceSpecification() extends FlatSpec with Matchers {
       for (
         passport <- ps.createPassport(new PassportCreator {
           def createPassport() = Passport("username", Seq("some role"))
-        }) ;
-      foundPassport <- ps.findPassport("username")
-      ) yield passport should be(foundPassport)
+        });
+        foundPassport <- ps.findPassport("username")
+      ) yield passport should not be null
     }
   }
 }
