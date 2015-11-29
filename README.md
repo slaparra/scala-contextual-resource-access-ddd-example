@@ -4,7 +4,7 @@ scala-contextual-resource-access-ddd-example
 Requirements
 -------------
 
-* SBT installed
+* SBT
 * Scala
 
 Running the Application
