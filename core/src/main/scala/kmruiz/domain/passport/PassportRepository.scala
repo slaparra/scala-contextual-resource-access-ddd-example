@@ -28,4 +28,5 @@ case class VolatilePassportRepository(state: MMap[String, PassportSerialization]
 
 object PassportRepository {
   def apply(state: MMap[String, PassportSerialization])(implicit ec: ExecutionContext): VolatilePassportRepository = VolatilePassportRepository(state)
+  def apply()(implicit ec: ExecutionContext): VolatilePassportRepository = VolatilePassportRepository(MMap())
 }

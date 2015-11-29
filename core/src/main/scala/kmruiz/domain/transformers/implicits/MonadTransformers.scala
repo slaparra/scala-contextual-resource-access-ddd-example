@@ -12,4 +12,6 @@ object MonadTransformers {
     case Success(v) => Future.successful(v)
     case Failure(ex) => Future.failed(ex)
   }
+
+  implicit def bindToFuture[T](t: T): Future[T] = Future.successful(t)
 }
