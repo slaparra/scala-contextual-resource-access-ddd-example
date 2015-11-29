@@ -26,8 +26,7 @@ $> ./sbt.run-unit-test.sh
 Modules
 -------
 
-core: Where the domain logic lives
-api: Play stateful application (it should be a REST API)
+See [INFO.md](INFO.md)
 
 Usage
 -----
