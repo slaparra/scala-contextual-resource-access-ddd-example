@@ -10,12 +10,12 @@ import scala.concurrent.{ExecutionContext, Future}
   * @since 11/29/15.
   */
 trait RegistrationBook {
-  def login(username: String, password: String): Future[Passport]
+  def sign(username: String, password: String): Future[Passport]
 }
 
 case class BasicRegistrationBook(userService: UserService, passportService: PassportService)(implicit ec: ExecutionContext)
   extends RegistrationBook {
-  def login(username: String, password: String) = for (
+  def sign(username: String, password: String) = for (
     user <- userService.login(username, password) ;
     passport <- passportService.createPassport(user)
   ) yield passport
