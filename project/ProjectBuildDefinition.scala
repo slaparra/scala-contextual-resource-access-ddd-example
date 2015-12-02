@@ -8,6 +8,9 @@ object ProjectBuildDefinition extends Build {
   lazy val Scallop = "org.rogach" %% "scallop" % "0.9.5"
 
   lazy val api = project enablePlugins PlayScala dependsOn core
-  lazy val cli = project settings(libraryDependencies ++= Seq(Scallop)) dependsOn core
+  lazy val cli = project settings(
+      libraryDependencies ++= Seq(Scallop),
+      mainClass in Compile := Some("kmruiz.cli.CLI")
+    ) dependsOn core
   lazy val core = project settings(libraryDependencies ++= Seq(ScalaTest, NScalaTime))
 }
